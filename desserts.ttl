@@ -1,0 +1,1434 @@
+@prefix : <http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts> .
+
+<http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts> rdf:type owl:Ontology ;
+                                                                      rdfs:comment "The desserts course project by Jesse Kostoss" .
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#hasCalories
+:hasCalories rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#hasFlavor
+:hasFlavor rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :hasIngredient ;
+           rdfs:domain :Desserts ;
+           rdfs:range :Flavor .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#hasIngredient
+:hasIngredient rdf:type owl:ObjectProperty .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#hasTexture
+:hasTexture rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :hasIngredient ;
+            rdfs:domain :Desserts ;
+            rdfs:range :Texture .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#hasTopping
+:hasTopping rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf :hasIngredient ;
+            rdf:type owl:TransitiveProperty ;
+            rdfs:domain :Desserts ;
+            rdfs:range :Toppings .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Almonds
+:Almonds rdf:type owl:Class ;
+         rdfs:subClassOf :Nuts .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#ApplePie
+:ApplePie rdf:type owl:Class ;
+          rdfs:subClassOf :NamedDesserts ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasCalories ;
+                            owl:someValuesFrom [ rdf:type owl:Class ;
+                                                 owl:oneOf ( :over200
+                                                           )
+                                               ]
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasFlavor ;
+                            owl:someValuesFrom :SweetBase
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasTexture ;
+                            owl:someValuesFrom :Soft
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasTopping ;
+                            owl:someValuesFrom :Cinnamon
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasTopping ;
+                            owl:someValuesFrom :Sugar
+                          ] ;
+          rdfs:comment "Apple pie, like the song. Pie with apples. Sweet warm pie. Very good with ice cream when hot. Cinnamon adds more depth of flavor." .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#BananaBread
+:BananaBread rdf:type owl:Class ;
+             rdfs:subClassOf :NamedDesserts ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasCalories ;
+                               owl:someValuesFrom :Diet
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasCalories ;
+                               owl:someValuesFrom [ rdf:type owl:Class ;
+                                                    owl:oneOf ( :under200
+                                                              )
+                                                  ]
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasFlavor ;
+                               owl:someValuesFrom :SweetBase
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasTexture ;
+                               owl:someValuesFrom :Soft
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasTopping ;
+                               owl:someValuesFrom :Bananas
+                             ] ;
+             rdfs:comment "Banana's make such nice baking friends. Banana bread is no different. Lovely moist bread that isn't too sweet, perfect for breakfast by itself." .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#BananaPudding
+:BananaPudding rdf:type owl:Class ;
+               rdfs:subClassOf :NamedDesserts ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasCalories ;
+                                 owl:someValuesFrom :Diet
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasCalories ;
+                                 owl:someValuesFrom [ rdf:type owl:Class ;
+                                                      owl:oneOf ( :under200
+                                                                )
+                                                    ]
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasFlavor ;
+                                 owl:someValuesFrom :CreamyBase
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasTexture ;
+                                 owl:someValuesFrom :Soft
+                               ] ;
+               rdfs:comment "Good ol' banana pudding. Pudding is always nice" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#BananaSplit
+:BananaSplit rdf:type owl:Class ;
+             rdfs:subClassOf :NamedDesserts ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasCalories ;
+                               owl:someValuesFrom [ rdf:type owl:Class ;
+                                                    owl:oneOf ( :over200
+                                                              )
+                                                  ]
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasFlavor ;
+                               owl:someValuesFrom :SweetBase
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasTexture ;
+                               owl:someValuesFrom :Soft
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasTopping ;
+                               owl:someValuesFrom :Bananas
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasTopping ;
+                               owl:someValuesFrom :Cherries
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasTopping ;
+                               owl:someValuesFrom :ChocolateCream
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasTopping ;
+                               owl:someValuesFrom :Peanuts
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasTopping ;
+                               owl:someValuesFrom :WhippedCream
+                             ] ;
+             rdfs:comment "Bananas with vanilla ice cream and just about any topping you so choose. This one has nuts so beware." .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Bananas
+:Bananas rdf:type owl:Class ;
+         rdfs:subClassOf :Fruit .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Blackberries
+:Blackberries rdf:type owl:Class ;
+              rdfs:subClassOf :Fruit .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Blueberries
+:Blueberries rdf:type owl:Class ;
+             rdfs:subClassOf :Fruit .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#BlueberryMuffin
+:BlueberryMuffin rdf:type owl:Class ;
+                 rdfs:subClassOf :NamedDesserts ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasCalories ;
+                                   owl:someValuesFrom [ rdf:type owl:Class ;
+                                                        owl:oneOf ( :over200
+                                                                  )
+                                                      ]
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasFlavor ;
+                                   owl:someValuesFrom :SweetBase
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasTexture ;
+                                   owl:someValuesFrom :Soft
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasTopping ;
+                                   owl:someValuesFrom :Blueberries
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasTopping ;
+                                   owl:someValuesFrom :Sugar
+                                 ] ;
+                 rdfs:comment "Great breakfast for on the go. Muffins with blueberries and topped with a light drizzle of sugar" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Brownies
+:Brownies rdf:type owl:Class ;
+          rdfs:subClassOf :NamedDesserts ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasCalories ;
+                            owl:someValuesFrom :Diet
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasCalories ;
+                            owl:someValuesFrom [ rdf:type owl:Class ;
+                                                 owl:oneOf ( :under200
+                                                           )
+                                               ]
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasFlavor ;
+                            owl:someValuesFrom :SweetBase
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasTexture ;
+                            owl:someValuesFrom :Soft
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasTopping ;
+                            owl:someValuesFrom :ChocolateChips
+                          ] ;
+          rdfs:comment "Soft, moist brownies. Very chocolatey, very rich. More chocolate the better" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Calories
+:Calories rdf:type owl:Class ;
+          owl:equivalentClass [ rdf:type owl:Class ;
+                                owl:oneOf ( :over200
+                                            :under200
+                                          )
+                              ] ;
+          rdfs:comment "New calorie counter. Added over200 just in case." .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Calories1
+:Calories1 rdf:type owl:Class ;
+           rdfs:comment "I thought about deleting this, since I didn't really see a difference between what this did and what Calories did but I kept it anyways so I wouldn't have to type {over200} in the query" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Candy
+:Candy rdf:type owl:Class ;
+       rdfs:subClassOf :Toppings .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#CandyApples
+:CandyApples rdf:type owl:Class ;
+             rdfs:subClassOf :NamedDesserts ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasCalories ;
+                               owl:someValuesFrom [ rdf:type owl:Class ;
+                                                    owl:oneOf ( :over200
+                                                              )
+                                                  ]
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasFlavor ;
+                               owl:someValuesFrom :SourBase
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasFlavor ;
+                               owl:someValuesFrom :SweetBase
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasTexture ;
+                               owl:someValuesFrom :Crispy
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasTopping ;
+                               owl:someValuesFrom :Caramel
+                             ] ;
+             rdfs:comment "Nice round, juicy apples covered in caramel and served on a stick. Slow down a bit or you might eat the stick" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Caramel
+:Caramel rdf:type owl:Class ;
+         rdfs:subClassOf :Candy .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#CheeseCake
+:CheeseCake rdf:type owl:Class ;
+            rdfs:subClassOf :NamedDesserts ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasCalories ;
+                              owl:someValuesFrom [ rdf:type owl:Class ;
+                                                   owl:oneOf ( :over200
+                                                             )
+                                                 ]
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasFlavor ;
+                              owl:someValuesFrom :CreamyBase
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasFlavor ;
+                              owl:someValuesFrom :SweetBase
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasTexture ;
+                              owl:someValuesFrom :Soft
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasTopping ;
+                              owl:someValuesFrom :ChocolateCream
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasTopping ;
+                              owl:someValuesFrom :Strawberries
+                            ] ;
+            rdfs:comment "Who doesn't know what cheesecake is? Very misleading too, doesn't taste like cheese in the slightest. Very soft, very rich and creamy. Toppings can be made from anything as well. I chose chocolate and strawberries. Could be cream, could be jam, could be chips. So versatile! Leave it up to the imagination to decide which is best for you." .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Cherries
+:Cherries rdf:type owl:Class ;
+          rdfs:subClassOf :Fruit .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Chewy
+:Chewy rdf:type owl:Class ;
+       rdfs:subClassOf :Texture .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#ChocolateChipCookie
+:ChocolateChipCookie rdf:type owl:Class ;
+                     rdfs:subClassOf :NamedDesserts ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hasCalories ;
+                                       owl:someValuesFrom :Diet
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hasCalories ;
+                                       owl:someValuesFrom [ rdf:type owl:Class ;
+                                                            owl:oneOf ( :under200
+                                                                      )
+                                                          ]
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hasFlavor ;
+                                       owl:someValuesFrom :SweetBase
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hasTexture ;
+                                       owl:someValuesFrom :Chewy
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hasTopping ;
+                                       owl:someValuesFrom :ChocolateChips
+                                     ] ;
+                     rdfs:comment "I'm talking the crunchy outside and soft, chewy inside cookie. The melt in your mouth kind. Oh yeah, thats what I'm talking about. Melty chocolate chips with a slight crunch. Nothing could be better" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#ChocolateChips
+:ChocolateChips rdf:type owl:Class ;
+                rdfs:subClassOf :Candy .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#ChocolateCream
+:ChocolateCream rdf:type owl:Class ;
+                rdfs:subClassOf :Candy .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#ChocolatePie
+:ChocolatePie rdf:type owl:Class ;
+              rdfs:subClassOf :NamedDesserts ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasCalories ;
+                                owl:someValuesFrom [ rdf:type owl:Class ;
+                                                     owl:oneOf ( :over200
+                                                               )
+                                                   ]
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasFlavor ;
+                                owl:someValuesFrom :SweetBase
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasTexture ;
+                                owl:someValuesFrom :Soft
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasTopping ;
+                                owl:someValuesFrom :ChocolateCream
+                              ] ,
+                              [ rdf:type owl:Restriction ;
+                                owl:onProperty :hasTopping ;
+                                owl:someValuesFrom :WhippedCream
+                              ] ;
+              rdfs:comment "Exactly how it sounds. Chocolate pie. mmmm" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#ChocolatePretzels
+:ChocolatePretzels rdf:type owl:Class ;
+                   rdfs:subClassOf :NamedDesserts ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasCalories ;
+                                     owl:someValuesFrom :Diet
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasCalories ;
+                                     owl:someValuesFrom [ rdf:type owl:Class ;
+                                                          owl:oneOf ( :under200
+                                                                    )
+                                                        ]
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasFlavor ;
+                                     owl:someValuesFrom :SweetBase
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasTexture ;
+                                     owl:someValuesFrom :Crunchy
+                                   ] ,
+                                   [ rdf:type owl:Restriction ;
+                                     owl:onProperty :hasTopping ;
+                                     owl:someValuesFrom :ChocolateCream
+                                   ] ;
+                   rdfs:comment "Crunchy pretzels covered by sweet smooth chocolate. Perfect if you aren't looking for much sweetness but still want to soothe your soul." .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#ChocolateStrawberries
+:ChocolateStrawberries rdf:type owl:Class ;
+                       rdfs:subClassOf :NamedDesserts ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty :hasCalories ;
+                                         owl:someValuesFrom :Diet
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty :hasCalories ;
+                                         owl:someValuesFrom [ rdf:type owl:Class ;
+                                                              owl:oneOf ( :under200
+                                                                        )
+                                                            ]
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty :hasFlavor ;
+                                         owl:someValuesFrom :SweetBase
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty :hasTexture ;
+                                         owl:someValuesFrom :Crunchy
+                                       ] ,
+                                       [ rdf:type owl:Restriction ;
+                                         owl:onProperty :hasTopping ;
+                                         owl:someValuesFrom :ChocolateCream
+                                       ] ;
+                       rdfs:comment "Strawberries covered in chocolate. Its fruit, so that means its healthy... right?" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Churro
+:Churro rdf:type owl:Class ;
+        rdfs:subClassOf :NamedDesserts ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasCalories ;
+                          owl:someValuesFrom :Diet
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasCalories ;
+                          owl:someValuesFrom [ rdf:type owl:Class ;
+                                               owl:oneOf ( :under200
+                                                         )
+                                             ]
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasFlavor ;
+                          owl:someValuesFrom :SweetBase
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasTexture ;
+                          owl:someValuesFrom :Soft
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasTopping ;
+                          owl:someValuesFrom :Cinnamon
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasTopping ;
+                          owl:someValuesFrom :Sugar
+                        ] ;
+        rdfs:comment "Crunchy when fresh. Loaded with cinnamon sugar and moist in the middle" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Cinnamon
+:Cinnamon rdf:type owl:Class ;
+          rdfs:subClassOf :Candy .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#CinnamonRolls
+:CinnamonRolls rdf:type owl:Class ;
+               rdfs:subClassOf :NamedDesserts ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasCalories ;
+                                 owl:someValuesFrom [ rdf:type owl:Class ;
+                                                      owl:oneOf ( :over200
+                                                                )
+                                                    ]
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasFlavor ;
+                                 owl:someValuesFrom :SweetBase
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasTexture ;
+                                 owl:someValuesFrom :Soft
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasTopping ;
+                                 owl:someValuesFrom :Cinnamon
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasTopping ;
+                                 owl:someValuesFrom :Frosting
+                               ] ;
+               rdfs:comment "Soft bread and cinnemon with a bit of frosting on top. Personally I don't like too much frosting, but only if its that walmart brand pure sugar stuff." .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#CreamyBase
+:CreamyBase rdf:type owl:Class ;
+            rdfs:subClassOf :Flavor .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#CremeBrulee
+:CremeBrulee rdf:type owl:Class ;
+             rdfs:subClassOf :NamedDesserts ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasCalories ;
+                               owl:someValuesFrom [ rdf:type owl:Class ;
+                                                    owl:oneOf ( :over200
+                                                              )
+                                                  ]
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasFlavor ;
+                               owl:someValuesFrom :CreamyBase
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasTexture ;
+                               owl:someValuesFrom :Crunchy
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasTopping ;
+                               owl:someValuesFrom :Sugar
+                             ] ;
+             rdfs:comment "Crunchy, caramelized sugar on top of pudding. French desserts are always very good." .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Crispy
+:Crispy rdf:type owl:Class ;
+        rdfs:subClassOf :Texture .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Crunchy
+:Crunchy rdf:type owl:Class ;
+         rdfs:subClassOf :Texture .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Desserts
+:Desserts rdf:type owl:Class ;
+          rdfs:subClassOf [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasFlavor ;
+                            owl:someValuesFrom :Flavor
+                          ] ;
+          rdfs:comment "WOW is this section large. There are so many different desserts from so many different countries and I couldn't manage to put them all down so I just settled for the more well known ones. And perhaps some of my friend's favorites too. Getting everyone to talk about desserts was very entertaining I must say." .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Diet
+:Diet rdf:type owl:Class ;
+      rdfs:subClassOf :Calories1 ;
+      rdfs:comment "Any dessert that is under 200 calories per serving is placed here. All according to google" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Donuts
+:Donuts rdf:type owl:Class ;
+        rdfs:subClassOf :NamedDesserts ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasCalories ;
+                          owl:someValuesFrom :Diet
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasCalories ;
+                          owl:someValuesFrom [ rdf:type owl:Class ;
+                                               owl:oneOf ( :under200
+                                                         )
+                                             ]
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasFlavor ;
+                          owl:someValuesFrom :SweetBase
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasTexture ;
+                          owl:someValuesFrom :Soft
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasTopping ;
+                          owl:someValuesFrom :ChocolateCream
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasTopping ;
+                          owl:someValuesFrom :Sugar
+                        ] ;
+        rdfs:comment "Who doesn't love a good donut. Apparently some places spell it like doughnut but not in America :) For this version, I chose the stomach bomb that was glazed with chocolate topping. Oh man its been a while since I've had one of these. This is making me hungry" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Flavor
+:Flavor rdf:type owl:Class ;
+        rdfs:comment "Every dessert must have a flavor. Otherwise nobody would want to eat it" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Frosting
+:Frosting rdf:type owl:Class ;
+          rdfs:subClassOf :Candy .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Fruit
+:Fruit rdf:type owl:Class ;
+       rdfs:subClassOf :Toppings .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#FruitSalad
+:FruitSalad rdf:type owl:Class ;
+            rdfs:subClassOf :NamedDesserts ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasCalories ;
+                              owl:someValuesFrom :Diet
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasCalories ;
+                              owl:someValuesFrom [ rdf:type owl:Class ;
+                                                   owl:oneOf ( :under200
+                                                             )
+                                                 ]
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasFlavor ;
+                              owl:someValuesFrom :SourBase
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasFlavor ;
+                              owl:someValuesFrom :SweetBase
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasTexture ;
+                              owl:someValuesFrom :Soft
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasTopping ;
+                              owl:someValuesFrom :Blackberries
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasTopping ;
+                              owl:someValuesFrom :Grapes
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasTopping ;
+                              owl:someValuesFrom :Oranges
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasTopping ;
+                              owl:someValuesFrom :Rasberries
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasTopping ;
+                              owl:someValuesFrom :Strawberries
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasTopping ;
+                              owl:someValuesFrom :Watermelon
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasTopping ;
+                              owl:someValuesFrom :WhippedCream
+                            ] ;
+            rdfs:comment "Literally anything is in this dish. You name it, you can have it. Keep it fruit though" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Fudge
+:Fudge rdf:type owl:Class ;
+       rdfs:subClassOf :NamedDesserts ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasCalories ;
+                         owl:someValuesFrom :Diet
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasCalories ;
+                         owl:someValuesFrom [ rdf:type owl:Class ;
+                                              owl:oneOf ( :under200
+                                                        )
+                                            ]
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasFlavor ;
+                         owl:someValuesFrom :CreamyBase
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasFlavor ;
+                         owl:someValuesFrom :SweetBase
+                       ] ,
+                       [ rdf:type owl:Restriction ;
+                         owl:onProperty :hasTexture ;
+                         owl:someValuesFrom :Soft
+                       ] ;
+       rdfs:comment "Surprisingly low calorie for how rich and chocolately it is" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#FunnelCake
+:FunnelCake rdf:type owl:Class ;
+            rdfs:subClassOf :NamedDesserts ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasCalories ;
+                              owl:someValuesFrom [ rdf:type owl:Class ;
+                                                   owl:oneOf ( :over200
+                                                             )
+                                                 ]
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasFlavor ;
+                              owl:someValuesFrom :SweetBase
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasTexture ;
+                              owl:someValuesFrom :Soft
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasTopping ;
+                              owl:someValuesFrom :Sugar
+                            ] ;
+            rdfs:comment "I mean its funnel cake, what more is there to say" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Grapes
+:Grapes rdf:type owl:Class ;
+        rdfs:subClassOf :Fruit .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#GummyBears
+:GummyBears rdf:type owl:Class ;
+            rdfs:subClassOf :Candy .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Hard
+:Hard rdf:type owl:Class ;
+      rdfs:subClassOf :Texture .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Hazelnuts
+:Hazelnuts rdf:type owl:Class ;
+           rdfs:subClassOf :Nuts .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#IceCream
+:IceCream rdf:type owl:Class ;
+          rdfs:subClassOf :Candy .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Jello
+:Jello rdf:type owl:Class ;
+       rdfs:subClassOf :Candy .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#JellyBeans
+:JellyBeans rdf:type owl:Class ;
+            rdfs:subClassOf :Candy .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#KeylimePie
+:KeylimePie rdf:type owl:Class ;
+            rdfs:subClassOf :NamedDesserts ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasCalories ;
+                              owl:someValuesFrom [ rdf:type owl:Class ;
+                                                   owl:oneOf ( :over200
+                                                             )
+                                                 ]
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasFlavor ;
+                              owl:someValuesFrom :CreamyBase
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasFlavor ;
+                              owl:someValuesFrom :SourBase
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasTexture ;
+                              owl:someValuesFrom :Soft
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasTopping ;
+                              owl:someValuesFrom :WhippedCream
+                            ] ;
+            rdfs:comment "Sour creamy pie. Tastes like lemon and lime with whipped cream" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Lollipops
+:Lollipops rdf:type owl:Class ;
+           rdfs:subClassOf :NamedDesserts ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasCalories ;
+                             owl:someValuesFrom :Diet
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasCalories ;
+                             owl:someValuesFrom [ rdf:type owl:Class ;
+                                                  owl:oneOf ( :under200
+                                                            )
+                                                ]
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasFlavor ;
+                             owl:someValuesFrom :SweetBase
+                           ] ,
+                           [ rdf:type owl:Restriction ;
+                             owl:onProperty :hasTexture ;
+                             owl:someValuesFrom :Hard
+                           ] ;
+           rdfs:comment "Everyone knows what a lollipop is" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Macarons
+:Macarons rdf:type owl:Class ;
+          rdfs:subClassOf :NamedDesserts ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasCalories ;
+                            owl:someValuesFrom [ rdf:type owl:Class ;
+                                                 owl:oneOf ( :over200
+                                                           )
+                                               ]
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasFlavor ;
+                            owl:someValuesFrom :SweetBase
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasTexture ;
+                            owl:someValuesFrom :Chewy
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasTexture ;
+                            owl:someValuesFrom :Crispy
+                          ] ;
+          rdfs:comment "Soft inside, crispy outside with chewey filling" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Marshmellows
+:Marshmellows rdf:type owl:Class ;
+              rdfs:subClassOf :Candy .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#NamedDesserts
+:NamedDesserts rdf:type owl:Class ;
+               rdfs:subClassOf :Desserts ;
+               rdfs:comment "Mmm this section makes me want to start baking something tasty" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Nuts
+:Nuts rdf:type owl:Class ;
+      rdfs:subClassOf :Toppings .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Oranges
+:Oranges rdf:type owl:Class ;
+         rdfs:subClassOf :Fruit .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#OreoCupcake
+:OreoCupcake rdf:type owl:Class ;
+             rdfs:subClassOf :NamedDesserts ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasCalories ;
+                               owl:someValuesFrom [ rdf:type owl:Class ;
+                                                    owl:oneOf ( :over200
+                                                              )
+                                                  ]
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasFlavor ;
+                               owl:someValuesFrom :SweetBase
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasTexture ;
+                               owl:someValuesFrom :Crunchy
+                             ] ,
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty :hasTopping ;
+                               owl:someValuesFrom :Oreos
+                             ] ;
+             rdfs:comment "A sweet cupcake with oreo toppings" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Oreos
+:Oreos rdf:type owl:Class ;
+       rdfs:subClassOf :Candy .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#PeanutButter
+:PeanutButter rdf:type owl:Class ;
+              rdfs:subClassOf :Candy .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Peanuts
+:Peanuts rdf:type owl:Class ;
+         rdfs:subClassOf :Nuts .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#PecanPie
+:PecanPie rdf:type owl:Class ;
+          rdfs:subClassOf :NamedDesserts ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasCalories ;
+                            owl:someValuesFrom :Diet
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasCalories ;
+                            owl:someValuesFrom [ rdf:type owl:Class ;
+                                                 owl:oneOf ( :under200
+                                                           )
+                                               ]
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasFlavor ;
+                            owl:someValuesFrom :SweetBase
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasTexture ;
+                            owl:someValuesFrom :Crunchy
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasTexture ;
+                            owl:someValuesFrom :Soft
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasTopping ;
+                            owl:someValuesFrom :Pecans
+                          ] ;
+          rdfs:comment "Pecan pie, soft and nutty pie. Almost like caramel but if it were diluted" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Pecans
+:Pecans rdf:type owl:Class ;
+        rdfs:subClassOf :Nuts .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#PumpkinPie
+:PumpkinPie rdf:type owl:Class ;
+            rdfs:subClassOf :NamedDesserts ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasCalories ;
+                              owl:someValuesFrom [ rdf:type owl:Class ;
+                                                   owl:oneOf ( :over200
+                                                             )
+                                                 ]
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasFlavor ;
+                              owl:someValuesFrom :SweetBase
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasTexture ;
+                              owl:someValuesFrom :Soft
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasTopping ;
+                              owl:someValuesFrom :WhippedCream
+                            ] ;
+            rdfs:comment "Pumpkin pie. It is what it is" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Rasberries
+:Rasberries rdf:type owl:Class ;
+            rdfs:subClassOf :Fruit .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#RedvelvetCake
+:RedvelvetCake rdf:type owl:Class ;
+               rdfs:subClassOf :NamedDesserts ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasCalories ;
+                                 owl:someValuesFrom [ rdf:type owl:Class ;
+                                                      owl:oneOf ( :over200
+                                                                )
+                                                    ]
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasFlavor ;
+                                 owl:someValuesFrom :SweetBase
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasTexture ;
+                                 owl:someValuesFrom :Soft
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasTopping ;
+                                 owl:someValuesFrom :Frosting
+                               ] ;
+               rdfs:comment "Red velvet cake. Not much else to say about that" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#RiceKrispyTreats
+:RiceKrispyTreats rdf:type owl:Class ;
+                  rdfs:subClassOf :NamedDesserts ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasCalories ;
+                                    owl:someValuesFrom :Diet
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasCalories ;
+                                    owl:someValuesFrom [ rdf:type owl:Class ;
+                                                         owl:oneOf ( :under200
+                                                                   )
+                                                       ]
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasFlavor ;
+                                    owl:someValuesFrom :SweetBase
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasTexture ;
+                                    owl:someValuesFrom :Crispy
+                                  ] ,
+                                  [ rdf:type owl:Restriction ;
+                                    owl:onProperty :hasTopping ;
+                                    owl:someValuesFrom :Marshmellows
+                                  ] ;
+                  rdfs:comment "Rice krispy cereal with melted marshmellows holding it together" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#RootbeerFloat
+:RootbeerFloat rdf:type owl:Class ;
+               rdfs:subClassOf :NamedDesserts ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasCalories ;
+                                 owl:someValuesFrom [ rdf:type owl:Class ;
+                                                      owl:oneOf ( :over200
+                                                                )
+                                                    ]
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasFlavor ;
+                                 owl:someValuesFrom :SweetBase
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasTexture ;
+                                 owl:someValuesFrom :Soft
+                               ] ,
+                               [ rdf:type owl:Restriction ;
+                                 owl:onProperty :hasTopping ;
+                                 owl:someValuesFrom :IceCream
+                               ] ;
+               rdfs:comment "Root beer with vanilla ice cream" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#SaltyBase
+:SaltyBase rdf:type owl:Class ;
+           rdfs:subClassOf :Flavor .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#SavoryBase
+:SavoryBase rdf:type owl:Class ;
+            rdfs:subClassOf :Flavor .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Skittles
+:Skittles rdf:type owl:Class ;
+          rdfs:subClassOf :Candy .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Smores
+:Smores rdf:type owl:Class ;
+        rdfs:subClassOf :NamedDesserts ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasCalories ;
+                          owl:someValuesFrom :Diet
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasCalories ;
+                          owl:someValuesFrom [ rdf:type owl:Class ;
+                                               owl:oneOf ( :under200
+                                                         )
+                                             ]
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasFlavor ;
+                          owl:someValuesFrom :SweetBase
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasTexture ;
+                          owl:someValuesFrom :Crunchy
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasTopping ;
+                          owl:someValuesFrom :ChocolateChips
+                        ] ,
+                        [ rdf:type owl:Restriction ;
+                          owl:onProperty :hasTopping ;
+                          owl:someValuesFrom :Marshmellows
+                        ] ;
+        rdfs:comment "Gram crackers with chocolate bar and melted marshmellows" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Soft
+:Soft rdf:type owl:Class ;
+      rdfs:subClassOf :Texture .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#SourBase
+:SourBase rdf:type owl:Class ;
+          rdfs:subClassOf :Flavor .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Sprinkles
+:Sprinkles rdf:type owl:Class ;
+           rdfs:subClassOf :Candy .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Strawberries
+:Strawberries rdf:type owl:Class ;
+              rdfs:subClassOf :Fruit .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#StrawberryShortcake
+:StrawberryShortcake rdf:type owl:Class ;
+                     rdfs:subClassOf :NamedDesserts ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hasCalories ;
+                                       owl:someValuesFrom :Diet
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hasCalories ;
+                                       owl:someValuesFrom [ rdf:type owl:Class ;
+                                                            owl:oneOf ( :under200
+                                                                      )
+                                                          ]
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hasFlavor ;
+                                       owl:someValuesFrom :SweetBase
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hasTexture ;
+                                       owl:someValuesFrom :Soft
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hasTopping ;
+                                       owl:someValuesFrom :Strawberries
+                                     ] ,
+                                     [ rdf:type owl:Restriction ;
+                                       owl:onProperty :hasTopping ;
+                                       owl:someValuesFrom :WhippedCream
+                                     ] ;
+                     rdfs:comment "Spongey sweet bread with strawberry toppings and whipped cream" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Sugar
+:Sugar rdf:type owl:Class ;
+       rdfs:subClassOf :Candy .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#SweetBase
+:SweetBase rdf:type owl:Class ;
+           rdfs:subClassOf :Flavor .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Texture
+:Texture rdf:type owl:Class ;
+         rdfs:comment "I consider crunchy and crispy to be two different things. Similar, but different. Crispy is more subtle, perhaps on the outside layer. Crunchy goes much further beyond the edges. Think of it like toasting bread, crunchy is when you forgot about it, and cripsy is that golden brown outside with the soft inside. Makes perfect sandwitches." .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Toppings
+:Toppings rdf:type owl:Class ;
+          rdfs:comment "Ohhh boy. Toppings make everything. For simplicity, I took all the most common ones. Nuts, fruits and candy. There sure is a lot that I left out too..." .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#ToxicWaste
+:ToxicWaste rdf:type owl:Class ;
+            rdfs:subClassOf :NamedDesserts ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasCalories ;
+                              owl:someValuesFrom :Diet
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasCalories ;
+                              owl:someValuesFrom [ rdf:type owl:Class ;
+                                                   owl:oneOf ( :under200
+                                                             )
+                                                 ]
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasFlavor ;
+                              owl:someValuesFrom :SourBase
+                            ] ,
+                            [ rdf:type owl:Restriction ;
+                              owl:onProperty :hasTexture ;
+                              owl:someValuesFrom :Hard
+                            ] ;
+            rdfs:comment "Hard, very sour candy" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#VanillaChips
+:VanillaChips rdf:type owl:Class ;
+              rdfs:subClassOf :Candy .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#VanillaIceCream
+:VanillaIceCream rdf:type owl:Class ;
+                 rdfs:subClassOf :NamedDesserts ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasCalories ;
+                                   owl:someValuesFrom :Diet
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasCalories ;
+                                   owl:someValuesFrom [ rdf:type owl:Class ;
+                                                        owl:oneOf ( :under200
+                                                                  )
+                                                      ]
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasFlavor ;
+                                   owl:someValuesFrom :SweetBase
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasTexture ;
+                                   owl:someValuesFrom :Soft
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasTopping ;
+                                   owl:someValuesFrom :Caramel
+                                 ] ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :hasTopping ;
+                                   owl:someValuesFrom :Oreos
+                                 ] ;
+                 rdfs:comment "Sweet vanilla ice cream with oreo and caramel toppings" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Walnuts
+:Walnuts rdf:type owl:Class ;
+         rdfs:subClassOf :Nuts .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Warheads
+:Warheads rdf:type owl:Class ;
+          rdfs:subClassOf :NamedDesserts ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasCalories ;
+                            owl:someValuesFrom :Diet
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasCalories ;
+                            owl:someValuesFrom [ rdf:type owl:Class ;
+                                                 owl:oneOf ( :under200
+                                                           )
+                                               ]
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasFlavor ;
+                            owl:someValuesFrom :SourBase
+                          ] ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasTexture ;
+                            owl:someValuesFrom :Hard
+                          ] ;
+          rdfs:comment "Hard, sour candy" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Watermelon
+:Watermelon rdf:type owl:Class ;
+            rdfs:subClassOf :Fruit .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#WhippedCream
+:WhippedCream rdf:type owl:Class ;
+              rdfs:subClassOf :Candy .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Flan(Creme_Caramel)
+<http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#Flan(Creme_Caramel)> rdf:type owl:Class ;
+                                                                                         rdfs:subClassOf :NamedDesserts ,
+                                                                                                         [ rdf:type owl:Restriction ;
+                                                                                                           owl:onProperty :hasCalories ;
+                                                                                                           owl:someValuesFrom [ rdf:type owl:Class ;
+                                                                                                                                owl:oneOf ( :over200
+                                                                                                                                          )
+                                                                                                                              ]
+                                                                                                         ] ,
+                                                                                                         [ rdf:type owl:Restriction ;
+                                                                                                           owl:onProperty :hasFlavor ;
+                                                                                                           owl:someValuesFrom :SweetBase
+                                                                                                         ] ,
+                                                                                                         [ rdf:type owl:Restriction ;
+                                                                                                           owl:onProperty :hasTexture ;
+                                                                                                           owl:someValuesFrom :Soft
+                                                                                                         ] ,
+                                                                                                         [ rdf:type owl:Restriction ;
+                                                                                                           owl:onProperty :hasTopping ;
+                                                                                                           owl:someValuesFrom :Caramel
+                                                                                                         ] ;
+                                                                                         rdfs:comment "Soft cheesecake like dish with caramel on top. Very sweet, very tasty. Spanish too" .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#M@Ms
+<http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#M@Ms> rdf:type owl:Class ;
+                                                                          rdfs:subClassOf :Candy .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#over200
+:over200 rdf:type owl:NamedIndividual ,
+                  :Calories .
+
+
+###  http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#under200
+:under200 rdf:type owl:NamedIndividual ,
+                   :Calories .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Almonds
+                :Hazelnuts
+                :Peanuts
+                :Pecans
+                :Walnuts
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Bananas
+                :Blackberries
+                :Blueberries
+                :Cherries
+                :Grapes
+                :Oranges
+                :Rasberries
+                :Strawberries
+                :Watermelon
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Candy
+                :Fruit
+                :Nuts
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Caramel
+                :ChocolateChips
+                :ChocolateCream
+                :Cinnamon
+                :Frosting
+                :GummyBears
+                :IceCream
+                :Jello
+                :JellyBeans
+                :Marshmellows
+                :Oreos
+                :PeanutButter
+                :Skittles
+                :Sprinkles
+                :Sugar
+                :VanillaChips
+                :WhippedCream
+                <http://www.semanticweb.org/jessekostoss/ontologies/2022/3/Desserts#M@Ms>
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Chewy
+                :Crispy
+                :Crunchy
+                :Hard
+                :Soft
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :CreamyBase
+                :SaltyBase
+                :SavoryBase
+                :SourBase
+                :SweetBase
+              )
+] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Desserts
+                :Flavor
+                :Texture
+                :Toppings
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
